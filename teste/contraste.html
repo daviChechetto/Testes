@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <button id="contraste">contraste</button>
+    
+    <div class="content">
+        <p>Conteúdo da página 1.</p>
+        <p>...</p>
+        <p>Mais conteúdo da página 1.</p>
+    </div>
+    <div class="content">
+        <p>Conteúdo da página 2.</p>
+        <p>...</p>
+        <p>Mais conteúdo da página 2.</p>
+    </div>
+    <div class="content">
+        <p>Conteúdo da página 3.</p>
+        <p>...</p>
+        <p>Mais conteúdo da página 3.</p>
+    </div>
+    <div class="page-footer">
+        Rodapé fixo - Página <span class="page-number"></span>
+    </div>
+
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .content {
+        margin: 20px;
+    }
+    
+    .contraste-alto{
+        background-color: "#000";
+        color: "#ff0";
+    }
+
+</style>
+
+<script>
+
+    //Botão Contraste
+    $(document).ready(function() {
+        $("#contraste").click(() => {
+            $("*").toggleClass('contraste-alto')
+        })
+    });
+
+</script>

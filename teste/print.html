@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <button onclick="window.close()">close</button>
+    <button onclick="window.print()">print</button>
+    <button id="contraste">contraste</button>
+    
+    <div class="content">
+        <p>Conteúdo da página 1.</p>
+        <p>...</p>
+        <p>Mais conteúdo da página 1.</p>
+    </div>
+    <div class="content">
+        <p>Conteúdo da página 2.</p>
+        <p>...</p>
+        <p>Mais conteúdo da página 2.</p>
+    </div>
+    <div class="content">
+        <p>Conteúdo da página 3.</p>
+        <p>...</p>
+        <p>Mais conteúdo da página 3.</p>
+    </div>
+    <div class="page-footer">
+        Rodapé fixo - Página <span class="page-number"></span>
+    </div>
+
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .content {
+        margin: 20px;
+    }
+    
+    .contraste-alto{
+        background-color: "#000";
+        color: "#ff0";
+    }
+
+
+    @media print {
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .content {
+            page-break-after: always;
+        }
+        .page-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            border-top: 1px solid #000;
+            padding: 10px;
+            background: #fff;
+        }
+        @page {
+            margin: 20mm;
+        }
+    }
+</style>
+
+<script>
+    // Script para adicionar o número da página no rodapé
+    document.addEventListener('DOMContentLoaded', () => {
+        const footer = document.querySelector('.page-footer');
+        let pageNumber = 1;
+        for (const content of document.querySelectorAll('.content')) {
+            const cloneFooter = footer.cloneNode(true);
+            cloneFooter.querySelector('.page-number').textContent = pageNumber++;
+            content.appendChild(cloneFooter);
+        }
+        footer.style.display = 'none';
+    });
+
+    //Botão Contraste
+    $(document).ready(function() {
+        $("#contraste").click(() => {
+            $("*").toggleClass('contraste-alto')
+        })
+    });
+
+</script>
